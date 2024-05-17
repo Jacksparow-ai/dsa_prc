@@ -1,0 +1,14 @@
+import math
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ans = []
+        for i in range(0,len(nums)):
+            a = nums[i:]
+            b = nums[:i]
+            if nums[i] in a:
+                a.remove(nums[i])
+            else:
+                b.remove(nums[i])
+            a.extend(b)
+            ans.append(math.prod(a))
+        return ans
