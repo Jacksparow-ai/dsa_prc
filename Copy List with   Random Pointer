@@ -1,0 +1,23 @@
+#Time Complexity: O(n)
+#Space Complexity: O(n)
+class Solution1:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        prev=dummy=Node(-1)
+        curr=head
+        d=dict()
+        while curr:
+            prev.next=Node(-1)
+            prev.next.val=curr.val
+            d[curr]=prev.next
+            curr=curr.next
+            prev=prev.next
+        curr=head
+        ptr=dummy.next
+        while curr:
+            if curr.random==None:
+                ptr.random=None
+            else:
+                ptr.random=d[curr.random]
+            curr=curr.next
+            ptr=ptr.next
+        return dummy.next
